@@ -1,4 +1,4 @@
-import { filter, forkJoin, map, Observable, of, tap } from 'rxjs';
+import { catchError, filter, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
 // interface NewsItem {
@@ -57,5 +57,23 @@ import { ajax } from 'rxjs/ajax';
 //     next: value => console.log('Spy:', value)
 //   }),
 // ).subscribe(value => console.log('Output:', value));
+
+//__________________________________________________________________
+
+// const obs$ = new Observable((subscriber) => {
+//   const timeOutFn = setTimeout(() => {
+//     subscriber.error(new Error('timeOut'));
+//   }, 3000);
+//   return () => {
+//     console.log('teardown fn');
+//     clearTimeout(timeOutFn);
+//   };
+// });
+
+// console.log('app started');
+
+// obs$.pipe(catchError((error) => of('error happend'))).subscribe((value) => {
+//   console.log(value);
+// });
 
 //__________________________________________________________________
