@@ -1,4 +1,5 @@
-import { filter, Observable } from 'rxjs';
+import { filter, forkJoin, map, Observable } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
 
 // interface NewsItem {
 //   category: 'Business' | 'Sports';
@@ -27,5 +28,24 @@ import { filter, Observable } from 'rxjs';
 // );
 
 // newsFeed$.subscribe((item) => console.log(item));
+
+//__________________________________________________________________
+
+// const randomFirstName$ = ajax<any>('https://random-data-api.com/api/name/random_name').pipe(
+//   map(ajaxResponse => ajaxResponse.response.first_name)
+// );
+
+// const randomCapital$ = ajax<any>('https://random-data-api.com/api/nation/random_nation').pipe(
+//   map(ajaxResponse => ajaxResponse.response.capital)
+// );
+
+// const randomDish$ = ajax<any>('https://random-data-api.com/api/food/random_food').pipe(
+//   map(ajaxResponse => ajaxResponse.response.dish)
+// );
+
+// forkJoin([randomFirstName$, randomCapital$, randomDish$]).subscribe(
+//   ([firstName, capital, dish]) =>
+//     console.log(`${firstName} is from ${capital} and likes to eat ${dish}.`)
+// );
 
 //__________________________________________________________________
