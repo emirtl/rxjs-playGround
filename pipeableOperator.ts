@@ -1,4 +1,4 @@
-import { filter, forkJoin, map, Observable } from 'rxjs';
+import { filter, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
 // interface NewsItem {
@@ -47,5 +47,15 @@ import { ajax } from 'rxjs/ajax';
 //   ([firstName, capital, dish]) =>
 //     console.log(`${firstName} is from ${capital} and likes to eat ${dish}.`)
 // );
+
+//__________________________________________________________________
+
+// of(1, 7, 3, 6, 2).pipe(
+//   filter(value => value > 5),
+//   map(value => value * 2),
+//   tap({
+//     next: value => console.log('Spy:', value)
+//   }),
+// ).subscribe(value => console.log('Output:', value));
 
 //__________________________________________________________________
