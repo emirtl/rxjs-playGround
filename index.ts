@@ -1,5 +1,5 @@
 import './style.css';
-import { of, map, Observable, fromEvent } from 'rxjs';
+import { of, map, Observable, fromEvent, EMPTY } from 'rxjs';
 import { catchError, concatMap } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
@@ -23,8 +23,22 @@ fromEvent(btnFetch, 'click')
   .pipe(
     map((value) => input.value),
     concatMap((value) =>
-      ajax(`https://random-data-api.com/api/${value}/random_${value}`)
+      ajax(`https://random-data-api.com/api/${value}/random_${value}`).pipe(
+        // catchError(() => EMPTY)
+        catchError((err) => of(`bad request , ${err}`))
+      )
     )
   )
-  .subscribe((value: any) => console.log(value));
+  .subscribe({
+    next: (value) => {
+      console.log(value);
+    },
+    error: (err) => {
+      console.log('error : ', err);
+    },
+    complete: () => {
+      console.log('completed');
+    },
+  });
+  
 //__________________________________________________________________
