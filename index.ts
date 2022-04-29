@@ -1,6 +1,7 @@
 import './style.css';
-import { of, map, Observable } from 'rxjs';
+import { of, map, Observable, fromEvent } from 'rxjs';
 import { catchError, concatMap } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
 
 // const obs$ = new Observable((subscriber) => {
 //   setTimeout(() => {
@@ -14,3 +15,16 @@ import { catchError, concatMap } from 'rxjs/operators';
 // obs$
 //   .pipe(concatMap((value) => of(1000, 2000)))
 //   .subscribe((value) => console.log(value));
+
+const btnFetch = document.getElementById('btnFetch');
+const input = document.getElementById('concatInput') as HTMLInputElement;
+
+fromEvent(btnFetch, 'click')
+  .pipe(
+    map((value) => input.value),
+    concatMap((value) =>
+      ajax(`https://random-data-api.com/api/${value}/random_${value}`)
+    )
+  )
+  .subscribe((value: any) => console.log(value));
+//__________________________________________________________________
